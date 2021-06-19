@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/angular12-at-first-installation",
+            "outputPath": "dist/angular12-at-first-installation/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -103,6 +103,28 @@
             ],
             "scripts": []
           }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/angular12-at-first-installation/server",
+            "main": "src/server.ts",
+            "tsConfig": "tsconfig.server.json",
+            "bundleDependencies": false,
+            "optimization": false
+          }
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:static-generator",
+          "configurations": {
+            "production": {
+              "browserTarget": "angular12-at-first-installation:build:production"
+            },
+            "development": {
+              "browserTarget": "angular12-at-first-installation:build:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }
